@@ -2,27 +2,20 @@ package com.SpringBoot_CRUD.JPA_packages.service;
 
 import com.SpringBoot_CRUD.JPA_packages.model.User;
 import com.SpringBoot_CRUD.JPA_packages.DAO.UserDaoImp;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 @Slf4j
 @Transactional(readOnly = true)
 public class UserServiceImp implements UserService {
 
     private final UserDaoImp innerUserDaoImp;
-
-    @Autowired
-    public UserServiceImp(UserDaoImp userDaoImp) {
-        innerUserDaoImp = userDaoImp;
-        log.info("UserWebServiceImpl: Users created");
-        userDaoImp.addUserToDatabase(new User("Andre", "Matias", "andreMatias@gmail.com"));
-        userDaoImp.addUserToDatabase(new User("Mari", "Lebron", "mariButterfly@gmail.com"));
-    }
 
     @Override
     public List<User> getUsersList() {
